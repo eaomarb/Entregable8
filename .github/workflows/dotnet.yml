@@ -1,34 +1,34 @@
 name: .NET
-	
-	on:
-	  push:
-	    branches: [ "master" ]
-	  pull_request:
-	    branches: [ "master" ]
-	
-	jobs:
-	  build:
-	    runs-on: ubuntu-latest
-	
-	    steps:
-	    - uses: actions/checkout@v4
-	
-	    - name: Setup .NET
-	      uses: actions/setup-dotnet@v4
-	      with:
-	        dotnet-version: 9.0.201
-	
-	    - name: Restore dependencies
-	      run: dotnet restore
-	
-	    - name: Build
-	      run: dotnet build --no-restore
-	
-	    - name: Publish
-	      run: dotnet publish -c Release -o output /p:BasePath=/Entregable8/
-	
-	    - name: Deploy to GitHub Pages
-	      uses: peaceiris/actions-gh-pages@v4
-	      with:
-	        github_token: ${{ secrets.ENTREGABLE8 }}
-	        publish_dir: ./output/wwwroot
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.3
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Publish
+      run: dotnet publish -c Release -o output /p:BasePath=/Entregable8/
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.ENTREGABLE8 }}
+        publish_dir: ./output/wwwroot
